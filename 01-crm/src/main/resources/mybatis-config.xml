@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 加载properties配置文件 -->
+    <properties resource="jdbc.properties"/>
+
+    <!--
+    <settings>
+        <setting name="nnn" value="vvv"/>
+    </settings>
+     -->
+
+    <!-- 给java类起别名 -->
+    <typeAliases>
+
+        <!-- typeAlias标签：给一个java类起别名.
+        type属性：指定java类的全名.
+        alias属性：别名。 -->
+
+        <!-- <typeAlias type="com.bjpowernode.mybatis.model.User" alias="User"/>
+         -->
+        <!--
+            package标签：批量给类起别名。
+            name:指定java的包名。默认把name指定的包下所有的类都起别名，别名就是类名。
+         -->
+        <package name="com.bjpowernode.crm.settings.qx.user.model"/>
+        <package name="com.bjpowernode.crm.workbench.activity.model"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <!-- 事务管理器:使用JDBC事务 -->
+            <transactionManager type="JDBC" />
+            <!-- 数据源信息:POOLED使用连接池;UNPOOLED不使用连接池;JDNI -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 注册加载映射文件 -->
+    <mappers>
+        <!--
+            mapper标签：加载注册一个映射文件。
+            resource属性：用来指定映射文件的路径.
+
+        <model resource="com/bjpowernode/mybatis/mapper/Mapper.xml" />
+         -->
+
+        <!--
+            mapper标签：加载注册一个映射文件。
+           class属性：指定java的类名(Dao接口的名字).
+                    加载Dao接口对应的映射文件。
+                要求：映射文件和Dao接口文件放在同一个目录下，并且映射文件名和Dao接口文件名一致。
+
+        <model class="com.bjpowernode.mybatis.mapper.UserDao"/>
+        -->
+
+        <!--
+            package标签：批量注册加载映射文件。
+            name属性：指定包名。
+                    注册加载包指定目录下所有的映射文件。
+         -->
+        <package name="com.bjpowernode.crm.settings.qx.user.mapper"/>
+        <package name="com.bjpowernode.crm.workbench.activity.mapper"/>
+    </mappers>
+</configuration>
